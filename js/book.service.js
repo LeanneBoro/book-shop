@@ -1,12 +1,15 @@
 'use strict'
+
+const BOOK_DB = 'bookDB'
 var gBooks
-createBooks()
+_createBooks()
 
 function getBooks() {
     return gBooks
 }
 
-function createBooks() {
+function _createBooks() {
+    // gBooks = loadFromStorage(BOOK_DB)
     if (!gBooks) {
         gBooks = [
             createBook('My year of rest and relaxation', 180,),
@@ -30,7 +33,7 @@ function createBook(title, price) {
 // function _saveBooks() {
 //     saveToStorage(TODO_DB, gBooks)
 // }
-function removeBook(ev,bookId) {
+function removeBook(ev, bookId) {
     const bookIdx = gBooks.findIndex(book => book.id === bookId)
     gBooks.splice(bookIdx, 1)
 }
@@ -46,7 +49,24 @@ function readBook(bookId) {
     return book
 }
 
-function addBook(title,price) {
+function addBook(title, price) {
     const newBook = createBook(title, price)
     gBooks.unshift(newBook)
 }
+
+
+function getExpensiveBooks() {
+    return gBooks.filter(book => book.price > 200).length
+}
+
+function getAverageBooks() {
+    return gBooks.filter(book => book.price > 80 && book.price < 200).length
+}
+
+function getCheapBooks() {
+    return gBooks.filter(book => book.price < 80).length
+}
+
+// function _saveBooks(){
+//     saveToStorage(TODO_DB, gBooks)
+// }

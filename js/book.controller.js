@@ -1,5 +1,6 @@
 'use strict'
 
+// sort simillar to filter almost identical - gSortBy - find the title they want
 
 function onInit() {
     renderBooks()
@@ -11,10 +12,22 @@ function renderBooks() {
         `<tr>
     <td>${book.title}</td>
     <td>${book.price}</td>
-    <td><button onclick="onReadBook('${book.id}')">read</button><button onclick="onUpdateBook('${book.id}')">update</button><button onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
+    <td><button onclick="onReadBook(event,'${book.id}')">read</button><button onclick="onUpdateBook('${book.id}')">update</button><button onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
     const elTable = document.querySelector('table')
     elTable.innerHTML = strHTMLs.join('')
+    renderStats()
 }
+
+function renderStats() {
+    const elExpensive = document.querySelector('.expensive')
+    const elAverage = document.querySelector('.average')
+    const elCheap = document.querySelector('.cheap')
+    elExpensive.innerText = getExpensiveBooks()
+    elAverage.innerText = getAverageBooks()
+    elCheap.innerText = getCheapBooks()
+}
+
+
 
 function onRemoveBook(ev, bookId) {
     ev.stopPropagation()
@@ -31,8 +44,16 @@ function onUpdateBook(bookId) {
     renderBooks()
 }
 
-function onReadBook() {
-    console.log('haha')
+function onReadBook(eve, bookId) {
+    eve.stopPropagation()
+    const book = readBook(bookId)
+    const elBookDetails = document.querySelector('.book-details')
+    const elSpan = elBookDetails.querySelector('h2 span')
+    const elPre = elBookDetails.querySelector('pre')
+    elPre.innerText = JSON.stringify(book, null, 2)
+    elSpan.innerText = book.txt
+    elBookDetails.showModal()
+
 }
 
 
@@ -41,5 +62,12 @@ function onAddBook() {
     const price = +prompt('give me a price')
     if (!title || !price) return
     addBook(title, price)
+    renderBooks()
+}
+
+
+function onSetFilterBy(elSelect) {
+    const filterBy = elSelect.value
+    setFilterBy(filterBy)
     renderBooks()
 }
