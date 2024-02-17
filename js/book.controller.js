@@ -12,7 +12,7 @@ function renderBooks() {
         `<tr>
     <td>${book.title}</td>
     <td>${book.price}</td>
-    <td><button onclick="onReadBook(event,'${book.id}')">read</button><button onclick="onUpdateBook('${book.id}')">update</button><button onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
+    <td><button class="read" onclick="onReadBook(event,'${book.id}')">read</button><button class="update" onclick="onUpdateBook('${book.id}')">update</button><button class="remove" onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
     const elTable = document.querySelector('table')
     elTable.innerHTML = strHTMLs.join('')
     renderStats()
@@ -66,8 +66,10 @@ function onAddBook() {
 }
 
 
-function onSetFilterBy(elSelect) {
-    const filterBy = elSelect.value
-    setFilterBy(filterBy)
-    renderBooks()
+function onFilter(elSelect) {
+    console.log(elSelect)
+    var text = elSelect.data
+    console.log(text)
+    filter(text)
+    console.log(gBooks)
 }

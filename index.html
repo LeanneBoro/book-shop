@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/style.css">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<link rel="stylesheet" href="css/style.css">
 <body onload="onInit()">
     <h1 class="title">Book Shop</h1>
+    <form oninput="onFilter(event)" class="filter">
+        <input type="text" placeholder="filter by" />
+        <!-- <button>Add</button> -->
+    </form>
     <button onclick="onAddBook()">Add book!</button>
-    <table >
+    <table>
         <tr>
             <th>title</th>
             <th>price</th>

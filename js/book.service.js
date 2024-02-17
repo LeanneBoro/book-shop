@@ -2,6 +2,7 @@
 
 const BOOK_DB = 'bookDB'
 var gBooks
+var gFilterIsOn 
 _createBooks()
 
 function getBooks() {
@@ -69,4 +70,8 @@ function getCheapBooks() {
 
 function _saveBooks() {
     saveToStorage(BOOK_DB, gBooks)
+}
+
+function filter(text) {
+    return gBooks.filter(book => book.title.includes(text))
 }
