@@ -14,14 +14,29 @@
         <input type="text" placeholder="filter by" />
         <!-- <button>Add</button> -->
     </form>
+    <button onclick="clearSearch()">clear</button>
     <button onclick="onAddBook()">Add book!</button>
     <table>
+        <thead>
+          <tr>
+            <td>
+              <span>Title</span>
+            </td>
+            <td>
+              <span>Price</span>
+            </td>
+            <td><span>Actions</span></td>
+          </tr>
+        </thead>
+        <tbody class="books-content"></tbody>
+      </table>
+    <!-- <table>
         <tr>
             <th>title</th>
             <th>price</th>
             <th>actions</th>
         </tr>
-    </table>
+    </table> -->
 
     <dialog class="book-details">
         <form method="dialog">

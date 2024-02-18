@@ -1,5 +1,5 @@
 'use strict'
-
+var gWord = ''
 // sort simillar to filter almost identical - gSortBy - find the title they want
 
 function onInit() {
@@ -13,7 +13,7 @@ function renderBooks() {
     <td>${book.title}</td>
     <td>${book.price}</td>
     <td><button class="read" onclick="onReadBook(event,'${book.id}')">read</button><button class="update" onclick="onUpdateBook('${book.id}')">update</button><button class="remove" onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
-    const elTable = document.querySelector('table')
+    const elTable = document.querySelector('.books-content')
     elTable.innerHTML = strHTMLs.join('')
     renderStats()
 }
@@ -67,9 +67,15 @@ function onAddBook() {
 
 
 function onFilter(elSelect) {
-    console.log(elSelect)
-    var text = elSelect.data
-    console.log(text)
-    filter(text)
-    console.log(gBooks)
+    var txt = elSelect.data
+    gWord += txt
+    console.log(gWord)
+    filter(gWord)
+    renderBooks()
+}
+
+function clearSearch() {
+    var elFilter = document.querySelector('input')
+    elFilter.innerHTML = ''
+    gWord = ''
 }

@@ -2,7 +2,6 @@
 
 const BOOK_DB = 'bookDB'
 var gBooks
-var gFilterIsOn 
 _createBooks()
 
 function getBooks() {

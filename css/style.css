@@ -12,10 +12,15 @@ td {
 
 
 footer {
+    position: fixed;
+    bottom: 0;
+    background-color: purple;
+    width: 100%;
+    min-height: 28px;
     display: flex;
-    gap: 10px;
-    background-color: rgb(177, 68, 201);
-    padding: 5px;
+    place-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 button {
