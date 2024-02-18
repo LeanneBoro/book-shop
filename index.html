@@ -10,11 +10,42 @@
 <link rel="stylesheet" href="css/style.css">
 <body onload="onInit()">
     <h1 class="title">Book Shop</h1>
-    <form oninput="onFilter(event)" class="filter">
-        <input type="text" placeholder="filter by" />
+    
+		<section class="book-filter">
+			<fieldset>
+                <legend>Filter & Sorting</legend>
+
+                <div class="filter-by">
+                    <label>
+                        <span>Min Rating:</span>
+                        <input type="range" min="0" max="300" value="50" 
+                               onchange="this.title=this.value;onSetFilterBy()" />
+                    </label>
+                </div>
+                
+                <div class="sort-by">
+                    <select onchange="onSetSortBy()">
+                        <option value="">Select Sorting</option>
+                        <option value="title">By Title</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                    <label>
+                        <span>Descending</span>
+                        <input class="sort-desc" type="checkbox" oninput="onSetSortBy()" />
+                    </label>
+                </div>
+            </fieldset> 
+
+		</section>
+    <form>
+        <label> Search by title
+          <input oninput="onSetFilterBy(this)" class="book-title" type="text" placeholder="Book title"
+            name="by-title" />
+        </label>
+      </form>
         <!-- <button>Add</button> -->
     </form>
-    <button onclick="clearSearch()">clear</button>
+    <button onclick="onResetFilter()">clear</button>
     <button onclick="onAddBook()">Add book!</button>
     <table>
         <thead>
@@ -26,6 +57,9 @@
               <span>Price</span>
             </td>
             <td><span>Actions</span></td>
+            <td>
+              <span>rating</span>
+            </td>
           </tr>
         </thead>
         <tbody class="books-content"></tbody>

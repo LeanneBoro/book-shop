@@ -12,7 +12,9 @@ function renderBooks() {
         `<tr>
     <td>${book.title}</td>
     <td>${book.price}</td>
-    <td><button class="read" onclick="onReadBook(event,'${book.id}')">read</button><button class="update" onclick="onUpdateBook('${book.id}')">update</button><button class="remove" onclick="onRemoveBook(event,'${book.id}')">delete</button></td></tr>`)
+    <td><button class="read" onclick="onReadBook(event,'${book.id}')">read</button>
+    <button class="update" onclick="onUpdateBook('${book.id}')">update</button>
+    <button class="remove" onclick="onRemoveBook(event,'${book.id}')">delete</button></td><td>${book.rating}</td>`)
     const elTable = document.querySelector('.books-content')
     elTable.innerHTML = strHTMLs.join('')
     renderStats()
@@ -66,13 +68,24 @@ function onAddBook() {
 }
 
 
-function onFilter(elSelect) {
-    var txt = elSelect.data
-    gWord += txt
-    console.log(gWord)
-    filter(gWord)
+function onSetFilterBy(elInput) {
+    const filterBy = elInput.value
+    setFilterBy(filterBy)
+
     renderBooks()
 }
+
+function onResetFilter() {
+
+    setFilterBy('')
+    renderBooks()
+
+    // clean the inputs 
+    const elTitle = document.querySelector('.book-title')
+    elTitle.value = ""
+}
+
+
 
 function clearSearch() {
     var elFilter = document.querySelector('input')

@@ -2,15 +2,21 @@
 
 const BOOK_DB = 'bookDB'
 var gBooks
+var gFilterBy = ''
 _createBooks()
 
 function getBooks() {
-    return gBooks
+    if (!gFilterBy) return gBooks
+
+    var books = gBooks.filter((book) =>
+        book.title.toLowerCase().includes(gFilterBy.toLowerCase())
+    )
+    return books
 }
 
 function _createBooks() {
     gBooks = loadFromStorage(BOOK_DB)
-    if (gBooks.length === 0) {
+    if (gBooks.length === 0 || !gBooks) {
         gBooks = [
             createBook('My year of rest and relaxation', 180,),
             createBook('White oleander', 120),
@@ -25,7 +31,8 @@ function createBook(title, price) {
     return {
         id: makeId(),
         title,
-        price
+        price,
+        rating: getRandomInt(1, 6)
         // img
     }
 }
@@ -71,6 +78,14 @@ function _saveBooks() {
     saveToStorage(BOOK_DB, gBooks)
 }
 
-function filter(text) {
-    return gBooks.filter(book => book.title.includes(text))
+function setFilterBy(filterBy){
+    gFilterBy = filterBy
 }
+
+// function setFilterBy(filterBy) {
+//     gFilterBy = filterBy
+// }
+
+// function getFilterBy() {
+//     return gFilterBy
+// }
