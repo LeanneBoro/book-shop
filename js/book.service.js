@@ -5,13 +5,27 @@ var gBooks
 var gFilterBy = ''
 _createBooks()
 
-function getBooks() {
-    if (!gFilterBy) return gBooks
-
-    var books = gBooks.filter((book) =>
-        book.title.toLowerCase().includes(gFilterBy.toLowerCase())
-    )
+function getBooks(options) {
+    const books = gBooks
     return books
+    // const books = _filterBooks(options.filterBy)
+    // if(options.sortBy.maxRating) { // sortBy : { vendor: -1 }
+    //     books.sort((book1, book2) => (book1.rating - book2.rating) * options.sortBy.maxSpeed)
+    // } else if(options.sortBy.vendor) {
+    //     books.sort((book1, book2) => (book1.title.localeCompare(book2.title)) * options.sortBy.maxSpeed)
+    // }
+    // if (!gFilterBy) return gBooks
+
+    // var books = gBooks.filter((book) =>
+    //     book.title.toLowerCase().includes(gFilterBy.toLowerCase())
+    // )
+    // return books
+}
+
+function _filterBooks(filterBy) {
+    return gBooks.filter(book => 
+        book.title.includes(filterBy.txt) &&
+        book.rating >= filterBy.minRating)
 }
 
 function _createBooks() {
@@ -82,10 +96,3 @@ function setFilterBy(filterBy){
     gFilterBy = filterBy
 }
 
-// function setFilterBy(filterBy) {
-//     gFilterBy = filterBy
-// }
-
-// function getFilterBy() {
-//     return gFilterBy
-// }

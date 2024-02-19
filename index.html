@@ -11,13 +11,13 @@
 <body onload="onInit()">
     <h1 class="title">Book Shop</h1>
     
-		<section class="book-filter">
+		<section class="car-filter">
 			<fieldset>
                 <legend>Filter & Sorting</legend>
 
                 <div class="filter-by">
                     <label>
-                        <span>Min Rating:</span>
+                        <span>Min Speed:</span>
                         <input type="range" min="0" max="300" value="50" 
                                onchange="this.title=this.value;onSetFilterBy()" />
                     </label>
@@ -26,8 +26,8 @@
                 <div class="sort-by">
                     <select onchange="onSetSortBy()">
                         <option value="">Select Sorting</option>
-                        <option value="title">By Title</option>
-                        <option value="rating">Rating</option>
+                        <option value="price">By price</option>
+                        <option value="rating">By rating</option>
                     </select>
                     <label>
                         <span>Descending</span>

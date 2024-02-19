@@ -1,13 +1,16 @@
 'use strict'
-var gWord = ''
-// sort simillar to filter almost identical - gSortBy - find the title they want
+const gQueryOptions = {
+    sortBy: { txt: '', minRating: 0 },
+    sortBy: {},
+    // page: { idx: 0, size: 3 }
+}
 
 function onInit() {
     renderBooks()
 }
 
 function renderBooks() {
-    const books = getBooks()
+    const books = getBooks(gQueryOptions)
     const strHTMLs = books.map(book =>
         `<tr>
     <td>${book.title}</td>
@@ -92,3 +95,36 @@ function clearSearch() {
     elFilter.innerHTML = ''
     gWord = ''
 }
+
+function onSetSortBy() {
+    console.log('hey')
+    // const elSortBy = document.querySelector('.sort-by select')
+    // const elDirection = document.querySelector('.sort-by input')
+
+    // const direction = elDirection.checked ? -1 : 1
+
+    // if (elSortBy.value === 'rating') {
+    //     gQueryOptions.sortBy = { rating: dir }
+    // } else if (elSortBy.value === 'title') {
+    //     gQueryOptions.sortBy = { title: dir }
+    // }
+
+    // renderCars()
+}
+
+// function onSetSortBy() {
+//     const elSortBy = document.querySelector('.sort-by select')
+//     const elDir = document.querySelector('.sort-by input')
+
+//     const dir = elDir.checked ? -1 : 1
+
+//     gQueryOptions.sortBy = {}
+
+//     if(elSortBy.value === 'vendor') {
+//         gQueryOptions.sortBy = { vendor: dir }
+//     } else if(elSortBy.value === 'maxSpeed') {
+//         gQueryOptions.sortBy = { maxSpeed: dir }
+//     }
+//     gQueryOptions.page.idx = 0
+//     renderCars()
+// }
